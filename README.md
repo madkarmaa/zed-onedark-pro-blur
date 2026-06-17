@@ -7,7 +7,7 @@ A [Zed](https://zed.dev) theme extension that ports **[Binaryify/OneDark-Pro](ht
 ### Installing from source (dev extension)
 
 ```sh
-git clone https://github.com/madkarmaa/zed-onedark-pro-blur.git
+git clone https://github.com/madkarmaa/zed-onedark-pro-blur
 ```
 
 Then in Zed: command palette -> `zed: install dev extension` -> select the cloned folder.
@@ -16,8 +16,14 @@ Then in Zed: command palette -> `zed: install dev extension` -> select the clone
 
 **Prerequisites**: `git`, the [Rust toolchain](https://rustup.rs), and [`uv`](https://docs.astral.sh/uv/getting-started/installation/).
 
+Unix:
 ```sh
 ./sync.sh
+```
+
+Windows:
+```batch
+.\sync.bat
 ```
 
 ## Credits
