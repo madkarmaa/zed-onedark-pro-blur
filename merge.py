@@ -18,7 +18,7 @@ def make_overrides(bg: str, surface: str) -> dict:
         "background.appearance": "blurred",
         "background": bg + "d9",
         "surface.background": surface + "d0",
-        "editor.background": "#00000000",
+        "editor.background": "#00000000",  # "editor.background": bg + "d9", # matches more closely to base theme but loses blur effect
         "tab_bar.background": "#00000000",
         "toolbar.background": "#00000000",
         "panel.background": "#00000000",
