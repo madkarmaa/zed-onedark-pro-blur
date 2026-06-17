@@ -1,0 +1,23 @@
+name: Release
+
+on:
+    push:
+        tags:
+            - 'v*.*.*'
+
+permissions:
+    contents: write
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        name: Create release
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+
+            - name: Create GitHub release
+              run: gh release create ${{ github.ref_name }} --generate-notes
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
