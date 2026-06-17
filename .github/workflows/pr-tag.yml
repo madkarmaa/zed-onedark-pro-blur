@@ -1,0 +1,59 @@
+name: PR tag version bump
+
+on:
+    pull_request:
+        types: [closed]
+        branches:
+            - main
+        paths:
+            - extension.toml
+
+permissions:
+    contents: write
+
+jobs:
+    tag:
+        if: github.event.pull_request.merged == true
+        runs-on: ubuntu-latest
+        name: Tag if version changed
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+              with:
+                ref: ${{ github.event.pull_request.base.ref }}
+                fetch-depth: 0
+                token: ${{ secrets.RELEASE_PAT }}
+
+            - name: Read old and new version
+              id: version
+              run: |
+                git show ${{ github.event.pull_request.base.sha }}:extension.toml > /tmp/old_extension.toml
+
+                get_version() {
+                    grep -E '^version\s*=' "$1" | head -n1 | sed -E 's/^version\s*=\s*"([^"]*)".*/\1/'
+                }
+
+                OLD_VERSION=$(get_version /tmp/old_extension.toml)
+                NEW_VERSION=$(get_version extension.toml)
+
+                echo "Old version: $OLD_VERSION"
+                echo "New version: $NEW_VERSION"
+
+                echo "old=$OLD_VERSION" >> "$GITHUB_OUTPUT"
+                echo "new=$NEW_VERSION" >> "$GITHUB_OUTPUT"
+
+            - name: Create and push tag
+              if: steps.version.outputs.old != steps.version.outputs.new
+              run: |
+                TAG="v${{ steps.version.outputs.new }}"
+
+                if git rev-parse "$TAG" >/dev/null 2>&1; then
+                    echo "Tag $TAG already exists, skipping."
+                    exit 0
+                fi
+
+                git config user.name "github-actions[bot]"
+                git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                git tag "$TAG"
+                git push origin "$TAG"
