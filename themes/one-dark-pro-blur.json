@@ -4,7 +4,7 @@
     "author": "MadKarma",
     "themes": [
         {
-            "name": "OneDark Pro darker",
+            "name": "OneDark Pro darker (blur)",
             "appearance": "dark",
             "style": {
                 "background.appearance": "blurred",
@@ -207,7 +207,7 @@
             }
         },
         {
-            "name": "OneDark Pro flat",
+            "name": "OneDark Pro flat (blur)",
             "appearance": "dark",
             "style": {
                 "background.appearance": "blurred",
@@ -413,7 +413,7 @@
             }
         },
         {
-            "name": "OneDark Pro mix",
+            "name": "OneDark Pro mix (blur)",
             "appearance": "dark",
             "style": {
                 "background.appearance": "blurred",
@@ -617,7 +617,7 @@
             }
         },
         {
-            "name": "OneDark Pro night flat",
+            "name": "OneDark Pro night flat (blur)",
             "appearance": "dark",
             "style": {
                 "background.appearance": "blurred",
@@ -820,7 +820,7 @@
             }
         },
         {
-            "name": "OneDark Pro",
+            "name": "OneDark Pro (blur)",
             "appearance": "dark",
             "style": {
                 "background.appearance": "blurred",

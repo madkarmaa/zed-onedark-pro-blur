@@ -89,7 +89,7 @@ def apply_blur(style: dict, theme_file: Path) -> dict:
 
 
 def patch_theme_name(theme_file: Path) -> str:
-    return theme_file.stem.replace("-", " ")
+    return theme_file.stem.replace("-", " ") + " (blur)"
 
 
 def main() -> None:
